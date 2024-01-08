@@ -1,0 +1,43 @@
+﻿@model CoreAndFood.Data.Models.Food
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Food Add Page</h2>
+<br />
+@using (Html.BeginForm("FoodAdd", "Food", FormMethod.Post))
+{
+
+    @Html.Label("Food Name")
+    @Html.TextBoxFor(x => x.FoodName, new { @class = "form-control" })
+
+    <br />
+
+    @Html.Label("Stock")
+    @Html.TextBoxFor(x => x.FoodStock, new { @class = "form-control" })
+
+    <br />
+
+    @Html.Label("Price")
+    @Html.TextBoxFor(x => x.FoodPrice, new { @class = "form-control" })
+
+    <br />
+
+    @Html.Label("İmage Url")
+    @Html.TextBoxFor(x => x.FoodImageUrl, new { @class = "form-control" })
+
+    <br />
+    //v1den taşıdığım değerlerin idsini al. Dropdownda kullan.
+    @Html.Label("Category")
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+    @*@Html.TextBoxFor(x => x.Category.CategoryName, new {@class="form-control" })*@
+
+    <br />
+    @Html.Label("Description")
+    @Html.TextAreaFor(x => x.FoodDescription, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-success">Save</button>
+}
+

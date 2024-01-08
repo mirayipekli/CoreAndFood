@@ -1,0 +1,39 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<CoreAndFood.Data.Models.Food> 
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<h2>Food List</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Food Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+    <tr>
+        <td>@x.FoodId</td>
+        <td>@x.FoodName</td>
+        <td>@x.FoodPrice</td>
+        <td>@x.FoodStock</td>
+        <td>@x.Category.CategoryName</td>
+        <td><a href="/Food/FoodGet/@x.FoodId" class="btn btn-warning">Update</a></td>
+        <td><a href="/Food/FoodDelete/@x.FoodId" class="btn btn-danger">Delete</a></td>
+        <td><a href="#" class="btn btn-info">Details</a></td>
+    </tr>
+    }
+</table>
+
+@*Tüm pageler sırayla ipagelistten gelecek ve bu gelen değer indexdeki page parametresine gidip yeni sayfa oluşturacak.*@
+@Html.PagedListPager((IPagedList)Model, page=>Url.Action("Index", new {page}))
+
+<a href="/Food/FoodAdd" class="btn btn-success">New Food</a>

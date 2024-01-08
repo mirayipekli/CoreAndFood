@@ -1,0 +1,31 @@
+﻿@model CoreAndFood.Data.Models.Category
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Category Add Page</h2>
+<br />
+@using (Html.BeginForm("CategoryUpdate", "Category", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.CategoryId)
+    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+
+    <br />
+
+    @Html.LabelFor(x => x.CategoryName)
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    //"" kısmına mesaj yazabilirdik fakat böyle olduğunda sayfa ilk yüklendiği andan itibaren bu mesajı verirdi.
+    //Bunun amacı Burayı boş geçmeyin gibi bir uyarı vermesi
+    //Bu yüzden modelde error message kullandık.
+    @Html.ValidationMessageFor(x => x.CategoryName, "", new { @style = "color:red" })
+
+    <br />
+
+    @Html.LabelFor(x => x.CategoryDescription)
+    @Html.TextBoxFor(x => x.CategoryDescription, new { @class = "form-control" })
+
+    <br />
+
+    <button class="btn btn-warning">Update</button>
+}
+
